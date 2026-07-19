@@ -75,49 +75,22 @@ let slides = document.querySelectorAll(".slide");
 let current = 0;
 
 function showSlide(index){
-    slides.forEach(s => s.classList.remove("active"));
-    slides[index].classList.add("active");
-}
-
-document.querySelector(".next").onclick = () => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-};
-
-document.querySelector(".prev").onclick = () => {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-};
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-
-function showSlide(index){
-    slides.forEach((slide)=>{
-        slide.classList.remove("active");
-    });
-
+    slides.forEach(slide => slide.classList.remove("active"));
     slides[index].classList.add("active");
 }
 
 function nextSlide(){
-    current++;
-    if(current >= slides.length){
-        current = 0;
-    }
+    current = (current + 1) % slides.length;
     showSlide(current);
 }
 
 function prevSlide(){
-    current--;
-    if(current < 0){
-        current = slides.length - 1;
-    }
+    current = (current - 1 + slides.length) % slides.length;
     showSlide(current);
 }
 
-// Auto Slide every 3 seconds
-setInterval(nextSlide, 3000);
-
-// Buttons
 document.querySelector(".next").addEventListener("click", nextSlide);
 document.querySelector(".prev").addEventListener("click", prevSlide);
+
+// Auto Slide every 3 seconds
+setInterval(nextSlide, 3000);
